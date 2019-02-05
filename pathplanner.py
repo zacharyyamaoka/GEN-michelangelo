@@ -61,14 +61,12 @@ class Planner():
 def plotTrajectory(trajectory):
     # fig = plt.figure(111)
     lenght = len(trajectory)
-    print(lenght)
     lines = []
     colours = []
     for i in range(lenght-1):
         start = [trajectory[i][0][0],trajectory[i][0][1]]
         end = [trajectory[i+1][0][0],trajectory[i+1][0][1]]
         end_points = [start,end]
-        print(end_points)
         gradient = (lenght - i)/lenght #decrease as you get further away linearlly
         c = (0,0,1,gradient)
         lines.append(end_points)
