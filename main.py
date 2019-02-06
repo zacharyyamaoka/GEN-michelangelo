@@ -14,7 +14,7 @@ plt.ion()
 Planner = Planner()
 
 # points = imageToXY('./imgs/Quiet-NASA-Transpo.jpg', show=False)
-points = imageToXY('./imgs/hire_me_v2.jpg', show=True)
+points = imageToXY('./imgs/h.jpg', show=True)
 
 num_points = len(points)
 print("Num of Points: ", num_points)
@@ -23,19 +23,19 @@ speed = 1
 curr_pos = points[0]
 
 traj = Planner.generateTrajectory(curr_pos,points,lookahead,speed)
-
+print(traj)
 # run(traj, robot)
-# sim(traj, robot, 0.01)
+sim(traj, robot, 0.01)
 
 #
+# plt.figure(9)
 # for p in points:
 #     plt.plot(p[0],p[1],'bo')
 # plotTrajectory(traj)
 # plt.axis('equal')
-plt.show()
-plt.pause(5)
+# plt.show()
+# plt.pause(5)
 #
-# sim(traj, robot, 0.01)
 
 # code to simulate robot
 

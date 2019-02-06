@@ -7,19 +7,23 @@ from canvas import Canvas
 plt.ion()
 
 
+pixel_width = 20
+m_width = 0.2
 def imageToXY(img='./imgs/Quiet-NASA-Transpo.jpg',show=True):
     img = cv2.imread(img,0)
     #downsample
     dim = np.maximum(img.shape[0],img.shape[1])
-    scale = 1000/dim
+    scale = pixel_width/dim
     # scale = 1
     scaled_w = int(img.shape[0] * scale)
     scaled_h = int(img.shape[1] * scale)
-    img_scaled = cv2.resize(img,(scaled_w,scaled_h),cv2.INTER_NEAREST)
+    img_scaled = cv2.resize(img,(scaled_h,scaled_w),cv2.INTER_NEAREST)
     # img = img[800:1000,800:1000]
-    edges = cv2.Canny(img_scaled,100,200)
+    # edges = cv2.Canny(img_scaled,100,200)
 
-    ret, edges = cv2.threshold(edges,127,255,cv2.THRESH_BINARY)
+    # ret, edges = cv2.threshold(edges,127,255,cv2.THRESH_BINARY)
+    ret, edges = cv2.threshold(img_scaled,127,255,cv2.THRESH_BINARY)
+
     if show:
         plt.figure(0)
         plt.imshow(img,cmap="gray")
@@ -42,7 +46,7 @@ def img2points(img):
     n = 0
     for i in range(w):
         for j in range(h):
-            if img[i,j] == 255:
+            if img[i,j] == 0:
                 x, y = matind2xy(i, j, img)
                 #return x,y cordinate of center point of each black pix
                 # asume bottom left is (0,0)
@@ -54,8 +58,8 @@ def img2points(img):
                 n += 1
     y_mean = y_total/n
     for p in points:
-        p[1] = p[1] - y_mean + 0.13 #yoffset
-        p[0] = p[0] + 0.17 #xoffset
+        p[1] = p[1] - y_mean#yoffset
+        p[0] = p[0] + 0.16 #xoffset
 
     return points #TODO return points in a more structure way to save work for pathplanner....
 
@@ -63,8 +67,8 @@ def matind2xy(i, j, mat):
     w, h = mat.shape
     #scale to A4
     dim = np.maximum(w,h)
-    scale = 0.15/dim
-
+    scale = m_width/dim
+    # scale = 1
     x = j
     y = h-i
 
