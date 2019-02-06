@@ -6,8 +6,8 @@ from img2xy import *
 
 def calibrate(q1_angle, q2_angle):
     #make this so
-    q1_offset = +80
-    q2_offset = +7
+    q1_offset = +75
+    q2_offset = -10
 
     q1_angle *= -1
     return q1_angle + q1_offset, q2_angle + q2_offset
@@ -18,7 +18,7 @@ def formatAngle(q1,q2):
     return data.encode()
 
 def run(traj, robot):
-    arduino = serial.Serial('/dev/cu.usbmodem14531', 115200, timeout=1)
+    arduino = serial.Serial('/dev/cu.usbmodem14541', 115200, timeout=1)
     time.sleep(2)
     t = 0
     a = -90
@@ -51,7 +51,7 @@ def run(traj, robot):
             q2 = np.rad2deg(q2)
 
             diff = (abs(q1_last - q1) + abs(q2_last - q2))/2 #avg diff
-            time_delay = diff*0.01 * 5
+            time_delay = diff*0.01 + 0.15
             print(time_delay)
             if cmd != dur-1:
                 cmd += 1
@@ -95,5 +95,5 @@ def tune(robot, q1, q2):
     # robot[0] += 0.01
     run(traj, robot)
 #
-# robot = [0.165, 0.177]
+# robot = [0.165, 0.18]
 # tune(robot,0,0)

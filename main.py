@@ -8,7 +8,7 @@ import serial
 from viz import sim
 from com import *
 
-robot = [0.165, 0.177]
+robot = [0.165, 0.18]
 plt.ion()
 # plt.figure(1)
 Planner = Planner()
@@ -36,7 +36,7 @@ traj = Planner.generateTrajectory(curr_pos,points,lookahead,speed)
 # print(traj)
 # run(traj, robot)
 
-if True:
+if False:
     sim(traj, robot, 0.01)
     plt.figure(9)
     # for i in range(len(points)):

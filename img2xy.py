@@ -59,7 +59,7 @@ def img2points(img):
                 n += 1
     y_mean = y_total/n
     for p in points:
-        p[1] = p[1] - y_mean + 0.09#yoffset
+        p[1] = p[1] - y_mean + 0.07#yoffset
         p[0] = p[0] + 0.14 #xoffset
 
     return points #TODO return points in a more structure way to save work for pathplanner....

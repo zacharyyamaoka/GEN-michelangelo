@@ -53,8 +53,8 @@ def sim(traj, robot, slow = 0.1):
             edge[1][0] *= 0.1
             edge[1][1] *= 0.1
 
-        print(edges)
-        colours = [[1,0,0,1],[1,0,0,1],[0,0,0,1],[0,0,0,1]]
+        # print(edges)
+        colours = [[0,0,0,1],[0,0,0,1],[0,0,0,1],[0,0,0,1]]
         bc = mc.LineCollection(edges, colors=colours, linewidths=2)
         ax.add_collection(bc)
 

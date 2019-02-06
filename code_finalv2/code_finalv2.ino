@@ -18,8 +18,8 @@ void setup() {
   Serial.begin(115200);
   q1.attach(9);  // attaches the servo on pin 9 to the servo object
   q2.attach(10); 
-  q1_angle = 80; //centers at zero
-  q2_angle = 7;
+  q1_angle = 75; //centers at zero
+  q2_angle = -10;
   q1.write(q1_angle);
   q2.write(q2_angle);
   q1_ready = true;
@@ -69,7 +69,7 @@ void loop() {
 
 if (!q1_ready && !q2_ready){
     if (once){
-      delay(10000); //rest n starting positon
+      delay(5000); //rest n starting positon
       once = false;
     }
     q1_ready = true;
