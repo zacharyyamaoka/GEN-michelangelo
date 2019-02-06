@@ -7,7 +7,7 @@ from canvas import Canvas
 plt.ion()
 
 
-pixel_width = 20
+pixel_width = 40
 m_width = 0.2
 def imageToXY(img='./imgs/Quiet-NASA-Transpo.jpg',show=True):
     img = cv2.imread(img,0)
@@ -31,6 +31,7 @@ def imageToXY(img='./imgs/Quiet-NASA-Transpo.jpg',show=True):
         plt.imshow(img_scaled,cmap="gray")
         plt.figure(5)
         plt.imshow(edges,cmap="gray")
+        plt.show()
         # plt.imshow(img,cmap="gray", interpolation = 'bicubic')
 
     points = img2points(edges)
@@ -58,8 +59,8 @@ def img2points(img):
                 n += 1
     y_mean = y_total/n
     for p in points:
-        p[1] = p[1] - y_mean#yoffset
-        p[0] = p[0] + 0.16 #xoffset
+        p[1] = p[1] - y_mean + 0.09#yoffset
+        p[0] = p[0] + 0.14 #xoffset
 
     return points #TODO return points in a more structure way to save work for pathplanner....
 

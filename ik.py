@@ -18,6 +18,7 @@ def IK(x, y, l1=1, l2=1):
 
     # IK eqns ref Intro to Robotics, John Craig
     c2 = ((x*x) + (y*y) - (l1*l1) - (l2*l2))/(2*l1*l2)
+    print("val: ", 1-c2**2)
     s2 = +1 * np.sqrt(1-c2**2) #could also be negative 1...
     q2 = np.arctan2(s2,c2)
 

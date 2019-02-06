@@ -35,7 +35,7 @@ class Planner():
         traj = [] # list of (x,y,t)
 
         x, y = curr_pos[0], curr_pos[1]
-
+        once = True
         for i in range(lookahead):
             #append nearest node to traj
             nn = self.nearestNode(x,y,nodes) #returns index in list.
@@ -45,7 +45,11 @@ class Planner():
                 nodes.remove(nn)
             #set current position to the new one
             x, y = nn[0],nn[1]
+            if once:
+                once = False
+                first = [x, y]
 
+        traj.append(([first[0], first[1]],lookahead)) # 2 close the loops
         return traj
 
 #
