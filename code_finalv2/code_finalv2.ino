@@ -56,9 +56,7 @@ void loop() {
             Serial.println(q2_angle);
             q1.write(q1_angle);
             q2.write(q2_angle);
-            
-//            delay(delay_time);   
-            
+                        
         } else if (pos < sizeof buffer - 1) {  // otherwise, buffer it
             buffer[pos++] = c;
         }

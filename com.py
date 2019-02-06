@@ -5,7 +5,7 @@ import numpy as np
 
 def calibrate(q1_angle, q2_angle):
     #make this so
-    q1_offset = +84
+    q1_offset = +80
     q2_offset = +7
 
     q1_angle *= -1
@@ -41,7 +41,7 @@ def run(traj, robot):
 
         # if (q1_ready and q2_ready):
         curr_time = time.time()
-
+        #now you only send message when time delay has passed and arduino has read both of the messages
         if (curr_time-msg_time >= time_delay) and q1_ready and q2_ready:
 
             p = traj[cmd][0]
@@ -56,7 +56,7 @@ def run(traj, robot):
                 cmd += 1
 
             msg = formatAngle(q1,q2)
-
+            # print(msg)
             arduino.write(msg)
 
             msg_time = time.time()
@@ -75,12 +75,12 @@ def run(traj, robot):
             data = data.strip('\r')
             print(data)
 
-            # if (data == "q1_ready"):
-            #     print("READY!!")
-            #     q1_ready = True
-            # if (data == "q2_ready"):
-            #     print("READY!!")
-            #     q2_ready = True
+            if (data == "q1_ready"):
+                print("READY!!")
+                q1_ready = True
+            if (data == "q2_ready"):
+                print("READY!!")
+                q2_ready = True
 
 def tune(robot, q1, q2):
 
